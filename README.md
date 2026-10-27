@@ -10,6 +10,10 @@ Không cần cài đặt thư viện. Mở `index.html` trực tiếp hoặc ch�
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
+## Triển khai trên Netlify
+
+`netlify.toml` cấu hình thư mục publish là thư mục gốc để Netlify đưa `index.html`, `styles.css`, `script.js` và `assets/` lên cùng nhau. Không cần build command.
+
 ## Trước khi phát hành
 
 - Cập nhật nội dung về lĩnh vực, sản phẩm, công nghệ và khách hàng theo thông tin chính thức của RCPPJSC.
