@@ -2,20 +2,23 @@
 
 Landing page tiếng Việt gồm 5 mục điều hướng: Giới thiệu, Sản phẩm, Công nghệ, Khách hàng và Liên hệ.
 
-## Chạy thử
+## Build và chạy thử
 
-Không cần cài đặt thư viện. Mở `index.html` trực tiếp hoặc chạy máy chủ tĩnh từ thư mục dự án:
+Trang được đóng gói thành một `index.html` độc lập để tránh lỗi 404 khi môi trường preview chỉ publish trang HTML. CSS, JavaScript và logo được nhúng trực tiếp vào trang từ các tệp nguồn.
 
 ```bash
+python3 build.py
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
+Sau khi chạy lệnh build, có thể mở `index.html` trực tiếp hoặc vào `http://localhost:8000`.
+
 ## Triển khai trên Netlify
 
-`netlify.toml` cấu hình thư mục publish là thư mục gốc để Netlify đưa `index.html`, `styles.css`, `script.js` và `assets/` lên cùng nhau. Không cần build command.
+`netlify.toml` chạy `python3 build.py` và publish thư mục `dist/`. Build script cũng tạo `index.html` độc lập ở thư mục gốc để có thể tải thủ công nếu cần. Trình duyệt không cần tải riêng CSS, JavaScript hay logo.
 
 ## Trước khi phát hành
 
 - Cập nhật nội dung về lĩnh vực, sản phẩm, công nghệ và khách hàng theo thông tin chính thức của RCPPJSC.
 - Biểu mẫu liên hệ hiện là giao diện demo, chưa gửi/lưu dữ liệu. Hãy kết nối email, CRM hoặc API trước khi sử dụng thật.
-- Logo RCPPJSC được lưu cục bộ tại `assets/rcppjsc-logo.png`; hình minh họa hero dùng SVG/CSS, không cần thư viện bên ngoài.
+- Các tệp `styles.css`, `script.js` và `assets/rcppjsc-logo.png` là nguồn được `build.py` dùng để tạo trang độc lập.
