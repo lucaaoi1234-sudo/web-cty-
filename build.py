@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bundle the page and copy lazy-loaded product images for deployment."""
+"""Build a self-contained page and an optimized Netlify artifact."""
 
 import re
 from base64 import b64encode
@@ -32,11 +32,27 @@ for marker, value in replacements.items():
         raise SystemExit(f"Expected exactly one {marker} marker in {template_path.name}")
     html = html.replace(marker, value)
 
-output_path.write_text(html, encoding="utf-8")
+# The root index.html must work when the host serves no files except that page.
+standalone_html = html
+for ref in sorted(product_refs):
+    marker = f'data-src="{ref}"'
+    if marker not in standalone_html:
+        raise SystemExit(f"Could not inline product image reference: {ref}")
+    encoded_image = b64encode((ROOT / ref).read_bytes()).decode("ascii")
+    data_uri = f"data:image/webp;base64,{encoded_image}"
+    standalone_html = standalone_html.replace(marker, f'data-src="{data_uri}"')
+output_path.write_text(standalone_html, encoding="utf-8")
+
+# Netlify gets a smaller initial HTML document plus separately cached gallery images.
 if dist_root.exists():
     rmtree(dist_root)
 dist_root.mkdir(parents=True, exist_ok=True)
 dist_path.write_text(html, encoding="utf-8")
 if product_assets.is_dir():
     copytree(product_assets, dist_root / "assets" / "products")
-print(f"Built standalone page to {output_path.name} and Netlify artifact dist/ ({output_path.stat().st_size:,} bytes + product images)")
+
+image_bytes = sum(path.stat().st_size for path in product_assets.glob("*.webp"))
+print(
+    f"Built standalone {output_path.name} ({output_path.stat().st_size:,} bytes) and "
+    f"Netlify dist/ ({dist_path.stat().st_size:,} bytes + {image_bytes:,} bytes of gallery images)"
+)
