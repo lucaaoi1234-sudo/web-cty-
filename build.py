@@ -12,7 +12,7 @@ dist_path = ROOT / "dist" / "index.html"
 html = template_path.read_text(encoding="utf-8")
 css = (ROOT / "styles.css").read_text(encoding="utf-8")
 js = (ROOT / "script.js").read_text(encoding="utf-8")
-logo = b64encode((ROOT / "assets" / "rcppjsc-logo.png").read_bytes()).decode("ascii")
+logo = b64encode((ROOT / "assets" / "rcppjsc-logo.webp").read_bytes()).decode("ascii")
 
 replacements = {
     "{{CSS}}": css,

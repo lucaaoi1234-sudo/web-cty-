@@ -21,4 +21,4 @@ Sau khi chạy lệnh build, có thể mở `index.html` trực tiếp hoặc v�
 
 - Cập nhật nội dung về lĩnh vực, sản phẩm, công nghệ và khách hàng theo thông tin chính thức của RCPPJSC.
 - Biểu mẫu liên hệ hiện là giao diện demo, chưa gửi/lưu dữ liệu. Hãy kết nối email, CRM hoặc API trước khi sử dụng thật.
-- Các tệp `styles.css`, `script.js` và `assets/rcppjsc-logo.png` là nguồn được `build.py` dùng để tạo trang độc lập.
+- `styles.css` và `script.js` được nhúng khi build. Logo PNG gốc được giữ tại `assets/rcppjsc-logo.png`; bản WebP tối ưu tại `assets/rcppjsc-logo.webp` được nhúng vào trang để giảm dung lượng tải.
