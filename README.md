@@ -11,8 +11,8 @@ python3 -m http.server 8000 --bind 0.0.0.0
 
 Build tạo hai đầu ra:
 
-- `index.html` là bản tự chứa: CSS, JavaScript, logo và bảy ảnh gallery đều được nhúng vào một tệp. Có thể tải riêng tệp này lên hosting chỉ phục vụ `index.html`.
-- `dist/` là bản deploy tối ưu: HTML ban đầu nhỏ hơn, còn ảnh WebP nằm ở `dist/assets/products/` và chỉ được yêu cầu khi mở gallery/chọn danh mục.
+- `index.html` là bản tự chứa: CSS, JavaScript, logo và cả bảy ảnh WebP đều được nhúng vào một tệp. Có thể tải riêng tệp này lên hosting chỉ phục vụ `index.html`.
+- `dist/` là bản deploy tối ưu: HTML ban đầu nhỏ hơn, còn ảnh WebP nằm ở `dist/assets/products/` và được tải theo nhu cầu — ảnh giới thiệu khi cuộn tới, ảnh gallery khi mở danh mục.
 
 Mở `index.html` trực tiếp hoặc vào `http://localhost:8000` để xem bản tự chứa.
 
@@ -22,8 +22,8 @@ Mở `index.html` trực tiếp hoặc vào `http://localhost:8000` để xem b�
 
 ## Nội dung và thư viện sản phẩm
 
-- Thông điệp giới thiệu nhấn mạnh “Chất lượng, giá cả cạnh tranh” và được bố trí ở cột trái.
-- Ô “Sản phẩm linh hoạt” mở dialog có các tab lọc: Tất cả, Sầu riêng, Hộp 11 kg, Thiết kế bao bì, Sản xuất và Thương hiệu. Hai ảnh nhà xưởng mới được thêm vào mục Sản xuất. Chuyển tab, mở dialog và hiện ảnh đều có animation; hỗ trợ bàn phím và đóng bằng Esc/backdrop.
+- Thông điệp “Chất lượng, giá cả cạnh tranh” nằm ở cột trái; hai ảnh nhà xưởng được đặt ngay bên phải thông điệp.
+- Ô “Sản phẩm linh hoạt” mở dialog có các tab lọc: Tất cả, Sầu riêng, Hộp 11 kg, Thiết kế bao bì và Thương hiệu. Chuyển tab, mở dialog và hiện ảnh đều có animation; hỗ trợ bàn phím và đóng bằng Esc/backdrop.
 - Để thêm sản phẩm, thêm ảnh WebP vào `assets/products/` và một `.product-tile` trong `index.template.html`, rồi chạy `python3 build.py`. Build sẽ nhúng ảnh vào `index.html` và chép ảnh vào `dist/assets/products/`.
 - `styles.css` và `script.js` được nhúng khi build. Logo PNG gốc được giữ tại `assets/rcppjsc-logo.png`; bản WebP tối ưu tại `assets/rcppjsc-logo.webp` được nhúng để giảm dung lượng tải.
 
