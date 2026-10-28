@@ -102,7 +102,7 @@ function applyProductFilter(selectedFilter, animate = true, loadImages = true) {
     });
 
     productGallery.setAttribute('aria-labelledby', selectedFilter.id);
-    if (productStatus) productStatus.textContent = `Hiển thị ${visibleTiles.length} sản phẩm`;
+    if (productStatus) productStatus.textContent = `Hiển thị ${visibleTiles.length} mục`;
 
     window.requestAnimationFrame(() => {
       visibleTiles.forEach((tile, index) => {

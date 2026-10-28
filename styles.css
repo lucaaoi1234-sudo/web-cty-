@@ -251,11 +251,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .landing-proof-item { display: flex; align-items: center; gap: 11px; }
 .landing-proof-item > span { color: #83a366; font-size: 8px; font-weight: 700; letter-spacing: 0.1em; }
 .landing-proof-item strong { color: #354a3e; font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: -0.02em; }
-.intro-summary { display: grid; grid-template-columns: 0.4fr 1fr; gap: 10%; padding-top: 86px; padding-bottom: 125px; border-top: 0; }
-.intro-summary .section-index { margin-top: 9px; align-self: start; }
-.intro-summary-main h2 { margin: 0; font-family: var(--font-display); font-size: clamp(32px, 4vw, 51px); font-weight: 500; letter-spacing: -0.065em; line-height: 1.18; }
-.intro-summary-main h2 span { color: #819c66; }
-.intro-summary-main > p { max-width: 700px; margin: 20px 0 44px; color: var(--muted); font-size: 14px; line-height: 1.9; }
+.intro-summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: clamp(32px, 6vw, 90px); padding-top: 86px; padding-bottom: 125px; border-top: 0; }
+.intro-summary-heading { min-width: 0; }
+.intro-summary-heading .section-index { margin: 0 0 25px; }
+.intro-summary-heading h2 { max-width: 520px; margin: 0; font-family: var(--font-display); font-size: clamp(32px, 4vw, 51px); font-weight: 500; letter-spacing: -0.065em; line-height: 1.18; }
+.intro-summary-heading h2 span { color: #819c66; }
+.intro-summary-main { min-width: 0; padding-top: 42px; }
+.intro-summary-main > p { max-width: 700px; margin: 0 0 36px; color: var(--muted); font-size: 14px; line-height: 1.9; }
 .values-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
 .value-item { padding-top: 17px; border-top: 1px solid var(--line); }
 .value-number { color: #819c66; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; }
@@ -356,6 +358,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .product-media img.is-loaded { opacity: 1; transform: scale(1); }
 .product-media--brand { background: #fff; }
 .product-media--photo { background: #17261d; }
+.product-media--factory-portrait { aspect-ratio: 1.15; background: #332d24; }
+.product-media--factory-portrait img, .product-media--factory-wide img { object-fit: cover; }
+.product-media--factory-portrait img { object-position: center 58%; }
+.product-media--factory-wide { aspect-ratio: 1.6; background: #332d24; }
 .product-media--spec, .product-media--concept, .product-media--layout { background: #f2edda; }
 .product-tile:hover .product-media img { transform: scale(1.025); }
 .product-tile-copy { padding: 14px 16px 17px; }
@@ -573,8 +579,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .landing-proof-item strong { font-size: 10px; }
   .intro-summary { grid-template-columns: 1fr; gap: 9px; padding-top: 55px; padding-bottom: 75px; }
   .intro-summary .section-index { margin-bottom: 8px; }
-  .intro-summary-main h2 { font-size: clamp(33px, 7vw, 46px); }
-  .intro-summary-main > p { margin: 17px 0 30px; }
+  .intro-summary-main { padding-top: 0; }
+  .intro-summary-heading h2 { font-size: clamp(33px, 7vw, 46px); }
+  .intro-summary-main > p { margin: 0 0 30px; }
   .values-row { gap: 16px; }
   .solutions-section { padding: 67px 0 54px; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 18px; }
@@ -632,7 +639,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .note-icon { width: 24px; height: 24px; }
   .art-coordinate { right: 13px; bottom: 14px; font-size: 6px; }
   .intro-summary { padding-top: 47px; padding-bottom: 62px; }
-  .intro-summary-main h2 { font-size: 32px; }
+  .intro-summary-heading h2 { font-size: 32px; }
   .values-row { grid-template-columns: 1fr; gap: 13px; }
   .value-item { display: grid; grid-template-columns: 46px 1fr; column-gap: 8px; padding-top: 12px; }
   .value-number { grid-row: span 2; padding-top: 4px; }
@@ -650,6 +657,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .product-gallery { grid-template-columns: 1fr; gap: 12px; }
   .product-media { aspect-ratio: 1.55; }
   .product-media--photo { aspect-ratio: 1.2; }
+  .product-media--factory-portrait { aspect-ratio: 1.15; }
+  .product-media--factory-wide { aspect-ratio: 1.6; }
   .product-tile-copy h3 { font-size: 14px; }
   .solution-card h3 { font-size: 17px; }
   .tech-visual { min-height: 310px; }
