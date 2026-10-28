@@ -318,6 +318,66 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .solutions-footer-link:hover span { transform: translateX(4px); }
 .footer-spark { color: var(--lime); font-size: 17px; }
 
+/* Interactive product gallery */
+.solution-card-gallery { cursor: pointer; }
+.product-gallery-trigger {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.product-dialog {
+  width: min(960px, calc(100vw - 32px));
+  max-height: min(90dvh, 860px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(235, 240, 228, 0.7);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 35px 110px rgba(6, 19, 13, 0.36);
+}
+.product-dialog[open] { animation: product-dialog-in 260ms cubic-bezier(.2,.75,.25,1) both; }
+.product-dialog::backdrop { background: rgba(7, 22, 15, 0.72); backdrop-filter: blur(7px); animation: product-backdrop-in 220ms ease both; }
+.product-dialog-shell { max-height: min(90dvh, 860px); overflow: auto; padding: clamp(22px, 4vw, 40px); scrollbar-color: #a9b89c transparent; scrollbar-width: thin; }
+.product-dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 22px; }
+.product-dialog-header .eyebrow { margin-bottom: 10px; }
+.product-dialog-header h2 { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 4vw, 43px); font-weight: 600; letter-spacing: -0.055em; line-height: 1.1; }
+.product-dialog-close { width: 42px; height: 42px; display: grid; flex: 0 0 42px; place-items: center; margin-top: 2px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); font-size: 26px; line-height: 1; cursor: pointer; transition: background-color 180ms ease, transform 180ms ease; }
+.product-dialog-close:hover { transform: rotate(90deg); background: #e5eadf; }
+.product-dialog-intro { margin: 13px 0 22px; color: var(--muted); font-size: 12px; line-height: 1.75; }
+.product-filter-list { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 15px; border-bottom: 1px solid var(--line); }
+.product-filter { min-height: 39px; display: inline-flex; align-items: center; gap: 10px; padding: 0 13px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: #55675c; font-size: 10px; font-weight: 700; white-space: nowrap; cursor: pointer; transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease; }
+.product-filter:hover { transform: translateY(-1px); border-color: #79975d; }
+.product-filter.is-selected { border-color: var(--green-dark); background: var(--green-dark); color: #f5f7f1; }
+.product-filter span { color: #82966f; font-size: 8px; }
+.product-filter.is-selected span { color: var(--lime); }
+.product-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 17px; transition: opacity 150ms ease, transform 150ms ease, filter 150ms ease; }
+.product-gallery.is-switching { transform: translateY(6px); filter: blur(2px); opacity: 0.12; }
+.product-tile { min-width: 0; overflow: hidden; border: 1px solid rgba(31, 56, 43, 0.12); border-radius: 8px; background: #fff; box-shadow: 0 7px 22px rgba(20, 42, 31, 0.045); }
+.product-tile[hidden] { display: none; }
+.product-tile.is-entering { animation: product-tile-in 430ms cubic-bezier(.2,.75,.25,1) both; animation-delay: var(--reveal-delay, 0ms); }
+.product-media { display: grid; place-items: center; overflow: hidden; aspect-ratio: 1.42; background: #f0eee3; }
+.product-media img { width: 100%; height: 100%; display: block; object-fit: contain; opacity: 0; transform: scale(.975); transition: opacity 320ms ease, transform 560ms cubic-bezier(.2,.75,.25,1); }
+.product-media img.is-loaded { opacity: 1; transform: scale(1); }
+.product-media--brand { background: #fff; }
+.product-media--photo { background: #17261d; }
+.product-media--spec, .product-media--concept, .product-media--layout { background: #f2edda; }
+.product-tile:hover .product-media img { transform: scale(1.025); }
+.product-tile-copy { padding: 14px 16px 17px; }
+.product-tile-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #859579; font-size: 8px; font-weight: 700; letter-spacing: 0.14em; }
+.product-tile-meta span:last-child { color: #a3afa0; }
+.product-tile-copy h3 { margin: 7px 0 3px; font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.35; }
+.product-tile-copy p { margin: 0; color: #77837a; font-size: 10px; line-height: 1.65; }
+.product-gallery-status { min-height: 14px; margin: 12px 0 0; color: #869287; font-size: 9px; }
+@keyframes product-dialog-in { from { opacity: 0; transform: translateY(18px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes product-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes product-tile-in { from { opacity: 0; transform: translateY(13px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
 /* Technology */
 .technology-section { padding: 102px 0 100px; background: #eef0e9; }
 .tech-layout { display: grid; grid-template-columns: 0.86fr 1.14fr; align-items: center; gap: clamp(42px, 8vw, 110px); }
@@ -532,6 +592,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .section-heading h2, .tech-copy h2 { font-size: clamp(36px, 8vw, 51px); }
   .section-lead { max-width: 560px; font-size: 13px; }
   .solution-grid { grid-template-columns: 1fr; gap: 10px; }
+  .product-dialog { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); }
+  .product-dialog-shell { max-height: calc(100dvh - 24px); padding: 24px; }
+  .product-dialog-header h2 { font-size: clamp(28px, 6.5vw, 38px); }
+  .product-filter-list { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .product-filter-list::-webkit-scrollbar { display: none; }
+  .product-gallery { gap: 10px; }
+  .product-tile-copy { padding: 12px; }
   .solution-card { min-height: 0; padding: 22px 22px 20px; }
   .solution-icon { margin: 26px 0 15px; }
   .solution-card > p { max-width: 470px; margin-bottom: 18px; }
@@ -583,6 +650,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .value-item p { font-size: 10px; }
   .section-index { margin-bottom: 24px; font-size: 8px; }
   .section-heading h2, .tech-copy h2 { font-size: 37px; }
+  .product-dialog { width: 100vw; max-width: none; height: 100dvh; max-height: 100dvh; border: 0; border-radius: 0; }
+  .product-dialog-shell { height: 100dvh; max-height: 100dvh; padding: 20px 16px max(20px, env(safe-area-inset-bottom)); }
+  .product-dialog-header h2 { font-size: 29px; }
+  .product-dialog-close { width: 38px; height: 38px; flex-basis: 38px; }
+  .product-dialog-intro { margin-bottom: 17px; font-size: 11px; }
+  .product-filter-list { gap: 6px; margin-right: -16px; padding-right: 16px; }
+  .product-filter { min-height: 36px; gap: 7px; padding-inline: 11px; font-size: 9px; }
+  .product-gallery { grid-template-columns: 1fr; gap: 12px; }
+  .product-media { aspect-ratio: 1.55; }
+  .product-media--photo { aspect-ratio: 1.2; }
+  .product-tile-copy h3 { font-size: 14px; }
   .solution-card h3 { font-size: 17px; }
   .tech-visual { min-height: 310px; }
   .tech-orbit { transform: translate(-50%, -50%) scale(.84); }
@@ -759,14 +837,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
             <a href="#lien-he" class="card-link" aria-label="Trao đổi về giải pháp theo mục tiêu">Trao đổi về nhu cầu <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="solution-card">
+          <article class="solution-card solution-card-gallery">
             <div class="card-topline"><span>02 — PHÁT TRIỂN</span><span class="card-arrow" aria-hidden="true">↗</span></div>
             <div class="solution-icon icon-product" aria-hidden="true">
               <svg viewBox="0 0 64 64" fill="none"><rect x="10" y="11" width="44" height="42" rx="9" stroke="currentColor" stroke-width="1.5"/><path d="M20 23h24M20 32h14M20 41h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="46" cy="41" r="5" fill="#B6F181"/></svg>
             </div>
             <h3>Sản phẩm linh hoạt</h3>
             <p>Thiết kế trải nghiệm và tính năng theo nhu cầu thực tế — sẵn sàng thích ứng khi doanh nghiệp phát triển.</p>
-            <a href="#lien-he" class="card-link" aria-label="Tìm hiểu về sản phẩm linh hoạt">Tìm hiểu thêm <span aria-hidden="true">→</span></a>
+            <button class="card-link product-gallery-trigger" type="button" aria-label="Mở danh mục sản phẩm HOT" aria-haspopup="dialog" aria-controls="product-gallery-dialog">Khám phá sản phẩm <span aria-hidden="true">→</span></button>
           </article>
 
           <article class="solution-card">
@@ -782,6 +860,81 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
         <div class="solutions-footer"><div class="solutions-footer-note"><span class="footer-spark" aria-hidden="true">✳</span><span>Không theo khuôn mẫu. Tập trung vào điều tạo nên khác biệt cho bạn.</span></div><a class="solutions-footer-link" href="#lien-he">Trao đổi nhu cầu <span aria-hidden="true">→</span></a></div>
       </div>
     </section>
+
+    <dialog class="product-dialog" id="product-gallery-dialog" aria-labelledby="product-dialog-title" aria-describedby="product-dialog-intro">
+      <div class="product-dialog-shell">
+        <header class="product-dialog-header">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> DANH MỤC SẢN PHẨM</p>
+            <h2 id="product-dialog-title">Sản phẩm & bao bì HOT</h2>
+          </div>
+          <button class="product-dialog-close" type="button" aria-label="Đóng danh mục sản phẩm" autofocus>×</button>
+        </header>
+        <p class="product-dialog-intro" id="product-dialog-intro">Chọn một danh mục để xem sản phẩm, quy cách và hình ảnh bao bì.</p>
+
+        <div class="product-filter-list" role="tablist" aria-label="Lọc danh mục sản phẩm">
+          <button class="product-filter is-selected" id="product-filter-all" type="button" role="tab" aria-selected="true" aria-controls="product-gallery" tabindex="0" data-product-filter="all">Tất cả <span>05</span></button>
+          <button class="product-filter" id="product-filter-durian" type="button" role="tab" aria-selected="false" aria-controls="product-gallery" tabindex="-1" data-product-filter="durian">Sầu riêng <span>01</span></button>
+          <button class="product-filter" id="product-filter-box" type="button" role="tab" aria-selected="false" aria-controls="product-gallery" tabindex="-1" data-product-filter="box">Hộp 11 kg <span>02</span></button>
+          <button class="product-filter" id="product-filter-design" type="button" role="tab" aria-selected="false" aria-controls="product-gallery" tabindex="-1" data-product-filter="design">Thiết kế bao bì <span>02</span></button>
+          <button class="product-filter" id="product-filter-brand" type="button" role="tab" aria-selected="false" aria-controls="product-gallery" tabindex="-1" data-product-filter="brand">Thương hiệu <span>01</span></button>
+        </div>
+
+        <div class="product-gallery" id="product-gallery" role="tabpanel" aria-labelledby="product-filter-all" aria-live="polite">
+          <article class="product-tile" data-categories="brand">
+            <div class="product-media product-media--brand">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/hot-brand.webp" alt="Logo HOT Durian Export màu xanh và vàng" width="500" height="500" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>THƯƠNG HIỆU</span><span>01</span></div>
+              <h3>HOT Durian Export</h3>
+              <p>Nhận diện thương hiệu cho dòng sầu riêng xuất khẩu.</p>
+            </div>
+          </article>
+          <article class="product-tile" data-categories="durian">
+            <div class="product-media product-media--photo">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/durian-crates.webp" alt="Thùng sầu riêng HOT xếp tại khu vực đóng gói" width="480" height="853" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>SẢN PHẨM TƯƠI</span><span>02</span></div>
+              <h3>Sầu riêng đóng thùng</h3>
+              <p>Hình ảnh sản phẩm và quy cách đóng gói thực tế.</p>
+            </div>
+          </article>
+          <article class="product-tile" data-categories="box">
+            <div class="product-media product-media--spec">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/box-specification.webp" alt="Minh họa kích thước hộp sầu riêng 11 kg" width="374" height="280" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>QUY CÁCH</span><span>03</span></div>
+              <h3>Hộp carton 11 kg</h3>
+              <p>Bản minh họa kích thước và cấu trúc hộp đóng gói.</p>
+            </div>
+          </article>
+          <article class="product-tile" data-categories="box design">
+            <div class="product-media product-media--concept">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/packaging-concept.webp" alt="Phối cảnh thiết kế bao bì sầu riêng HOT và thông tin sản phẩm" width="900" height="600" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>THIẾT KẾ BAO BÌ</span><span>04</span></div>
+              <h3>Phối cảnh bao bì HOT</h3>
+              <p>Thiết kế hộp xuất khẩu với thông tin sản phẩm và nhận diện đồng bộ.</p>
+            </div>
+          </article>
+          <article class="product-tile" data-categories="design">
+            <div class="product-media product-media--layout">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/carton-layout.webp" alt="Bản khai triển các mặt thùng carton HOT" width="1000" height="418" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>KẾT CẤU HỘP</span><span>05</span></div>
+              <h3>Bản khai triển thùng carton</h3>
+              <p>Bố cục mặt hộp phục vụ thiết kế, kiểm tra và in ấn.</p>
+            </div>
+          </article>
+        </div>
+        <p class="product-gallery-status" id="product-gallery-status" role="status" aria-live="polite"></p>
+      </div>
+    </dialog>
 
     <section class="technology-section" id="cong-nghe" aria-labelledby="technology-title">
       <div class="container">
@@ -961,6 +1114,121 @@ contactForm?.addEventListener('submit', (event) => {
     formStatus.textContent = 'Cảm ơn bạn! Đây là bản xem trước — biểu mẫu chưa gửi dữ liệu. Vui lòng kết nối email hoặc CRM trước khi phát hành.';
   }
 });
+
+const productDialog = document.querySelector('#product-gallery-dialog');
+const productDialogTrigger = document.querySelector('.product-gallery-trigger');
+const productCard = document.querySelector('.solution-card-gallery');
+const productGallery = document.querySelector('#product-gallery');
+const productStatus = document.querySelector('#product-gallery-status');
+const productCloseButton = document.querySelector('.product-dialog-close');
+const productFilters = [...document.querySelectorAll('.product-filter')];
+const productTiles = [...document.querySelectorAll('.product-tile')];
+let productFilterTimer;
+
+function applyProductFilter(selectedFilter, animate = true, loadImages = true) {
+  if (!productGallery || !selectedFilter) return;
+  window.clearTimeout(productFilterTimer);
+
+  const updateGallery = () => {
+    productFilters.forEach((filter) => {
+      const isSelected = filter === selectedFilter;
+      filter.classList.toggle('is-selected', isSelected);
+      filter.setAttribute('aria-selected', String(isSelected));
+      filter.tabIndex = isSelected ? 0 : -1;
+    });
+
+    const category = selectedFilter.dataset.productFilter;
+    const visibleTiles = [];
+    productTiles.forEach((tile) => {
+      const categories = tile.dataset.categories.split(/\s+/);
+      const isVisible = category === 'all' || categories.includes(category);
+      tile.hidden = !isVisible;
+      tile.classList.remove('is-entering');
+      if (isVisible) {
+        const image = tile.querySelector('img[data-src]');
+        if (loadImages && image) {
+          if (image.dataset.loaded !== 'true') {
+            const revealImage = () => image.classList.add('is-loaded');
+            image.addEventListener('load', revealImage, { once: true });
+            image.addEventListener('error', revealImage, { once: true });
+            image.dataset.loaded = 'true';
+            image.src = image.dataset.src;
+          } else if (image.complete) {
+            image.classList.add('is-loaded');
+          }
+        }
+        visibleTiles.push(tile);
+      }
+    });
+
+    productGallery.setAttribute('aria-labelledby', selectedFilter.id);
+    if (productStatus) productStatus.textContent = `Hiển thị ${visibleTiles.length} sản phẩm`;
+
+    window.requestAnimationFrame(() => {
+      visibleTiles.forEach((tile, index) => {
+        tile.style.setProperty('--reveal-delay', `${Math.min(index * 55, 220)}ms`);
+        if (animate) tile.classList.add('is-entering');
+      });
+      productGallery.classList.remove('is-switching');
+    });
+  };
+
+  if (!animate) {
+    updateGallery();
+    return;
+  }
+
+  productGallery.classList.add('is-switching');
+  productFilterTimer = window.setTimeout(updateGallery, 130);
+}
+
+function openProductGallery() {
+  if (!productDialog) return;
+  if (typeof productDialog.showModal === 'function') {
+    if (!productDialog.open) productDialog.showModal();
+  } else {
+    productDialog.setAttribute('open', '');
+  }
+  const activeFilter = productFilters.find((filter) => filter.getAttribute('aria-selected') === 'true') || productFilters[0];
+  applyProductFilter(activeFilter, true);
+}
+
+function closeProductGallery() {
+  if (!productDialog) return;
+  if (typeof productDialog.close === 'function') productDialog.close();
+  else productDialog.removeAttribute('open');
+}
+
+productDialogTrigger?.addEventListener('click', openProductGallery);
+productCard?.addEventListener('click', (event) => {
+  if (event.target instanceof Element && event.target.closest('button, a')) return;
+  openProductGallery();
+});
+productCloseButton?.addEventListener('click', closeProductGallery);
+productDialog?.addEventListener('click', (event) => {
+  if (event.target === productDialog) closeProductGallery();
+});
+productDialog?.addEventListener('close', () => {
+  productGallery?.classList.remove('is-switching');
+  productDialogTrigger?.focus({ preventScroll: true });
+});
+
+productFilters.forEach((filter, index) => {
+  filter.addEventListener('click', () => applyProductFilter(filter));
+  filter.addEventListener('keydown', (event) => {
+    let nextIndex = index;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % productFilters.length;
+    else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + productFilters.length) % productFilters.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = productFilters.length - 1;
+    else return;
+    event.preventDefault();
+    productFilters[nextIndex].focus();
+    applyProductFilter(productFilters[nextIndex]);
+  });
+});
+
+if (productFilters.length) applyProductFilter(productFilters[0], false, false);
 
   </script>
 </body>

@@ -1,2 +1,3 @@
-# Generated Netlify output
+# Generated artifacts
 /dist/
+__pycache__/

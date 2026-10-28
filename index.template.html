@@ -159,14 +159,14 @@
             <a href="#lien-he" class="card-link" aria-label="Trao đổi về giải pháp theo mục tiêu">Trao đổi về nhu cầu <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="solution-card">
+          <article class="solution-card solution-card-gallery">
             <div class="card-topline"><span>02 — PHÁT TRIỂN</span><span class="card-arrow" aria-hidden="true">↗</span></div>
             <div class="solution-icon icon-product" aria-hidden="true">
               <svg viewBox="0 0 64 64" fill="none"><rect x="10" y="11" width="44" height="42" rx="9" stroke="currentColor" stroke-width="1.5"/><path d="M20 23h24M20 32h14M20 41h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="46" cy="41" r="5" fill="#B6F181"/></svg>
             </div>
             <h3>Sản phẩm linh hoạt</h3>
             <p>Thiết kế trải nghiệm và tính năng theo nhu cầu thực tế — sẵn sàng thích ứng khi doanh nghiệp phát triển.</p>
-            <a href="#lien-he" class="card-link" aria-label="Tìm hiểu về sản phẩm linh hoạt">Tìm hiểu thêm <span aria-hidden="true">→</span></a>
+            <button class="card-link product-gallery-trigger" type="button" aria-label="Mở danh mục sản phẩm HOT" aria-haspopup="dialog" aria-controls="product-gallery-dialog">Khám phá sản phẩm <span aria-hidden="true">→</span></button>
           </article>
 
           <article class="solution-card">
@@ -182,6 +182,81 @@
         <div class="solutions-footer"><div class="solutions-footer-note"><span class="footer-spark" aria-hidden="true">✳</span><span>Không theo khuôn mẫu. Tập trung vào điều tạo nên khác biệt cho bạn.</span></div><a class="solutions-footer-link" href="#lien-he">Trao đổi nhu cầu <span aria-hidden="true">→</span></a></div>
       </div>
     </section>
+
+    <dialog class="product-dialog" id="product-gallery-dialog" aria-labelledby="product-dialog-title" aria-describedby="product-dialog-intro">
+      <div class="product-dialog-shell">
+        <header class="product-dialog-header">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> DANH MỤC SẢN PHẨM</p>
+            <h2 id="product-dialog-title">Sản phẩm & bao bì HOT</h2>
+          </div>
+          <button class="product-dialog-close" type="button" aria-label="Đóng danh mục sản phẩm" autofocus>×</button>
+        </header>
+        <p class="product-dialog-intro" id="product-dialog-intro">Chọn một danh mục để xem sản phẩm, quy cách và hình ảnh bao bì.</p>
+
+        <div class="product-filter-list" role="tablist" aria-label="Lọc danh mục sản phẩm">
+          <button class="product-filter is-selected" id="product-filter-all" type="button" role="tab" aria-selected="true" aria-controls="product-gallery" tabindex="0" data-product-filter="all">Tất cả <span>05</span></button>
+          <button class="product-filter" id="product-filter-durian" type="button" role="tab" aria-selected="false" aria-controls="product-gallery" tabindex="-1" data-product-filter="durian">Sầu riêng <span>01</span></button>
+          <button class="product-filter" id="product-filter-box" type="button" role="tab" aria-selected="false" aria-controls="product-gallery" tabindex="-1" data-product-filter="box">Hộp 11 kg <span>02</span></button>
+          <button class="product-filter" id="product-filter-design" type="button" role="tab" aria-selected="false" aria-controls="product-gallery" tabindex="-1" data-product-filter="design">Thiết kế bao bì <span>02</span></button>
+          <button class="product-filter" id="product-filter-brand" type="button" role="tab" aria-selected="false" aria-controls="product-gallery" tabindex="-1" data-product-filter="brand">Thương hiệu <span>01</span></button>
+        </div>
+
+        <div class="product-gallery" id="product-gallery" role="tabpanel" aria-labelledby="product-filter-all" aria-live="polite">
+          <article class="product-tile" data-categories="brand">
+            <div class="product-media product-media--brand">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/hot-brand.webp" alt="Logo HOT Durian Export màu xanh và vàng" width="500" height="500" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>THƯƠNG HIỆU</span><span>01</span></div>
+              <h3>HOT Durian Export</h3>
+              <p>Nhận diện thương hiệu cho dòng sầu riêng xuất khẩu.</p>
+            </div>
+          </article>
+          <article class="product-tile" data-categories="durian">
+            <div class="product-media product-media--photo">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/durian-crates.webp" alt="Thùng sầu riêng HOT xếp tại khu vực đóng gói" width="480" height="853" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>SẢN PHẨM TƯƠI</span><span>02</span></div>
+              <h3>Sầu riêng đóng thùng</h3>
+              <p>Hình ảnh sản phẩm và quy cách đóng gói thực tế.</p>
+            </div>
+          </article>
+          <article class="product-tile" data-categories="box">
+            <div class="product-media product-media--spec">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/box-specification.webp" alt="Minh họa kích thước hộp sầu riêng 11 kg" width="374" height="280" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>QUY CÁCH</span><span>03</span></div>
+              <h3>Hộp carton 11 kg</h3>
+              <p>Bản minh họa kích thước và cấu trúc hộp đóng gói.</p>
+            </div>
+          </article>
+          <article class="product-tile" data-categories="box design">
+            <div class="product-media product-media--concept">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/packaging-concept.webp" alt="Phối cảnh thiết kế bao bì sầu riêng HOT và thông tin sản phẩm" width="900" height="600" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>THIẾT KẾ BAO BÌ</span><span>04</span></div>
+              <h3>Phối cảnh bao bì HOT</h3>
+              <p>Thiết kế hộp xuất khẩu với thông tin sản phẩm và nhận diện đồng bộ.</p>
+            </div>
+          </article>
+          <article class="product-tile" data-categories="design">
+            <div class="product-media product-media--layout">
+              <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/products/carton-layout.webp" alt="Bản khai triển các mặt thùng carton HOT" width="1000" height="418" loading="lazy" decoding="async">
+            </div>
+            <div class="product-tile-copy">
+              <div class="product-tile-meta"><span>KẾT CẤU HỘP</span><span>05</span></div>
+              <h3>Bản khai triển thùng carton</h3>
+              <p>Bố cục mặt hộp phục vụ thiết kế, kiểm tra và in ấn.</p>
+            </div>
+          </article>
+        </div>
+        <p class="product-gallery-status" id="product-gallery-status" role="status" aria-live="polite"></p>
+      </div>
+    </dialog>
 
     <section class="technology-section" id="cong-nghe" aria-labelledby="technology-title">
       <div class="container">

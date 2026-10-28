@@ -1,4 +1,4 @@
-# Publish the self-contained page from the repository root.
+# Publish the generated page and its optimized product gallery assets.
 [build]
   command = "python3 build.py"
   publish = "dist"
