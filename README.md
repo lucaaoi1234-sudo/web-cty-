@@ -22,7 +22,7 @@ Mở `index.html` trực tiếp hoặc vào `http://localhost:8000` để xem b�
 
 ## Nội dung và thư viện sản phẩm
 
-- Thông điệp “Chất lượng, giá cả cạnh tranh” nằm ở cột trái; hai ảnh nhà xưởng bên phải tự luân phiên dạng slideshow nền, có trạng thái tĩnh khi bật giảm chuyển động.
+- Thông điệp “Chất lượng, giá cả cạnh tranh” đặt trên nền ảnh nhà xưởng tràn khung; hai ảnh luân phiên dạng slideshow, có trạng thái tĩnh khi bật giảm chuyển động.
 - Ô “Sản phẩm linh hoạt” mở dialog có các tab lọc: Tất cả, Sầu riêng, Hộp 11 kg, Thiết kế bao bì và Thương hiệu. Chuyển tab, mở dialog và hiện ảnh đều có animation; hỗ trợ bàn phím và đóng bằng Esc/backdrop.
 - Để thêm sản phẩm, thêm ảnh WebP vào `assets/products/` và một `.product-tile` trong `index.template.html`, rồi chạy `python3 build.py`. Build sẽ nhúng ảnh vào `index.html` và chép ảnh vào `dist/assets/products/`.
 - `styles.css` và `script.js` được nhúng khi build. Logo PNG gốc được giữ tại `assets/rcppjsc-logo.png`; bản WebP tối ưu tại `assets/rcppjsc-logo.webp` được nhúng để giảm dung lượng tải.
